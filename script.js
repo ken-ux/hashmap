@@ -45,7 +45,21 @@ class HashMap {
     }
   }
 
-  has(key) {}
+  has(key) {
+    let bucket = this.hash(key) % this.buckets.length;
+
+    if (this.buckets[bucket]) {
+      let bucketKey = Object.keys(this.buckets[bucket])[0];
+
+      if (key === bucketKey) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 
   remove(key) {}
 
@@ -62,4 +76,5 @@ class HashMap {
 
 let test = new HashMap(16);
 test.set("kermit", 5);
-console.log(test.get("piy"));
+console.log(test.has("piggy"));
+console.log(test.has("kermit"));
