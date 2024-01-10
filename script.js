@@ -140,19 +140,20 @@ class HashMap {
   }
 }
 
+// Initialize and add key-value pairs to HashMap
 let test = new HashMap(16);
 test.set("kermit", 5);
-test.set("piggly", 6);
+test.set("misspiggy", 6);
 
-console.log(test.buckets);
-console.log(test.has("piggy"));
+// Test has()
+console.log(test.has("misterpiggy"));
 console.log(test.has("kermit"));
-// test.remove("kermit");
-// console.log(test.buckets);
+
+// Test remove()
+test.remove("kermit");
 console.log(test.has("kermit"));
-console.log(test.length());
-// test.clear();
-console.log(test.buckets);
+
+// Test keys(), values(), entries()
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
