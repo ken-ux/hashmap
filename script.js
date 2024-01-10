@@ -95,15 +95,44 @@ class HashMap {
     }
   }
 
-  keys() {}
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        keys.push(Object.keys(this.buckets[i])[0]);
+      }
+    }
+    return keys;
+  }
 
-  values() {}
+  values() {
+    let values = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        values.push(Object.values(this.buckets[i])[0]);
+      }
+    }
+    return values;
+  }
 
-  entries() {}
+  entries() {
+    let entries = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        let entry = [];
+        entry.push(Object.keys(this.buckets[i])[0]);
+        entry.push(Object.values(this.buckets[i])[0]);
+        entries.push(entry);
+      }
+    }
+    return entries;
+  }
 }
 
 let test = new HashMap(16);
 test.set("kermit", 5);
+test.set("piggly", 6);
+
 console.log(test.buckets);
 console.log(test.has("piggy"));
 console.log(test.has("kermit"));
@@ -111,6 +140,8 @@ console.log(test.has("kermit"));
 // console.log(test.buckets);
 console.log(test.has("kermit"));
 console.log(test.length());
-test.clear();
+// test.clear();
 console.log(test.buckets);
-console.log(test.length());
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
