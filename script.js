@@ -26,7 +26,6 @@ class HashMap {
   }
 
   get(key) {
-    // Reduces large hash codes into smaller integers
     let bucket = this.hash(key) % this.buckets.length;
 
     // Check if bucket exists
@@ -61,11 +60,40 @@ class HashMap {
     }
   }
 
-  remove(key) {}
+  remove(key) {
+    let bucket = this.hash(key) % this.buckets.length;
 
-  length() {}
+    if (this.buckets[bucket]) {
+      let bucketKey = Object.keys(this.buckets[bucket])[0];
 
-  clear() {}
+      // Only remove key if it matches what's already in the bucket
+      if (key === bucketKey) {
+        this.buckets[bucket] = null;
+      } else {
+        throw new Error("Key does not match.");
+      }
+    } else {
+      throw new Error("Key does not exist in the HashMap.");
+    }
+  }
+
+  length() {
+    let storedKeys = 0;
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        storedKeys++;
+      }
+    }
+    return storedKeys;
+  }
+
+  clear() {
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        this.buckets[i] = null;
+      }
+    }
+  }
 
   keys() {}
 
@@ -76,5 +104,13 @@ class HashMap {
 
 let test = new HashMap(16);
 test.set("kermit", 5);
+console.log(test.buckets);
 console.log(test.has("piggy"));
 console.log(test.has("kermit"));
+// test.remove("kermit");
+// console.log(test.buckets);
+console.log(test.has("kermit"));
+console.log(test.length());
+test.clear();
+console.log(test.buckets);
+console.log(test.length());
