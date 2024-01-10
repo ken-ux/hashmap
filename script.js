@@ -3,8 +3,6 @@ class HashMap {
     this.buckets = new Array(size);
   }
 
-  // Emulates error that would be thrown in other programming languages
-  // where arrays cannot be dynamically sized
   indexError(index) {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
