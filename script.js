@@ -1,10 +1,14 @@
-// if (index < 0 || index >= buckets.length) {
-//   throw new Error("Trying to access index out of bound");
-// }
-
 class HashMap {
   constructor(size) {
     this.buckets = new Array(size);
+  }
+
+  // Emulates error that would be thrown in other programming languages
+  // where arrays cannot be dynamically sized
+  indexError(index) {
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bound");
+    }
   }
 
   hash(value) {
@@ -21,12 +25,14 @@ class HashMap {
   set(key, value) {
     // Reduces large hash codes into smaller integers
     let bucket = this.hash(key) % this.buckets.length;
+    this.indexError(bucket);
 
     this.buckets[bucket] = { [key]: value };
   }
 
   get(key) {
     let bucket = this.hash(key) % this.buckets.length;
+    this.indexError(bucket);
 
     // Check if bucket exists
     if (this.buckets[bucket]) {
@@ -46,6 +52,7 @@ class HashMap {
 
   has(key) {
     let bucket = this.hash(key) % this.buckets.length;
+    this.indexError(bucket);
 
     if (this.buckets[bucket]) {
       let bucketKey = Object.keys(this.buckets[bucket])[0];
@@ -62,6 +69,7 @@ class HashMap {
 
   remove(key) {
     let bucket = this.hash(key) % this.buckets.length;
+    this.indexError(bucket);
 
     if (this.buckets[bucket]) {
       let bucketKey = Object.keys(this.buckets[bucket])[0];
@@ -80,6 +88,7 @@ class HashMap {
   length() {
     let storedKeys = 0;
     for (let i = 0; i < this.buckets.length; i++) {
+      this.indexError(i);
       if (this.buckets[i]) {
         storedKeys++;
       }
@@ -89,6 +98,7 @@ class HashMap {
 
   clear() {
     for (let i = 0; i < this.buckets.length; i++) {
+      this.indexError(i);
       if (this.buckets[i]) {
         this.buckets[i] = null;
       }
@@ -98,6 +108,7 @@ class HashMap {
   keys() {
     let keys = [];
     for (let i = 0; i < this.buckets.length; i++) {
+      this.indexError(i);
       if (this.buckets[i]) {
         keys.push(Object.keys(this.buckets[i])[0]);
       }
@@ -108,6 +119,7 @@ class HashMap {
   values() {
     let values = [];
     for (let i = 0; i < this.buckets.length; i++) {
+      this.indexError(i);
       if (this.buckets[i]) {
         values.push(Object.values(this.buckets[i])[0]);
       }
@@ -118,6 +130,7 @@ class HashMap {
   entries() {
     let entries = [];
     for (let i = 0; i < this.buckets.length; i++) {
+      this.indexError(i);
       if (this.buckets[i]) {
         let entry = [];
         entry.push(Object.keys(this.buckets[i])[0]);
