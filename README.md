@@ -5,7 +5,7 @@ This is an implementation of a HashMap. The constructor for the HashMap class ta
 - hash(value): Takes a value and produces a hash code with it.
 - set(key, value): Adds a new key-value pair to the HashMap. If a key already exists, then the old value is overwritten.
 - get(key): Returns the value that is assigned to this key in the HashMap. If key is not found, returns `null`.
-- has(key): Returns true or false based on whether or not the key is in the HashMap.
+- has(key): Returns `true` or `false` based on whether or not the key is in the HashMap.
 - remove(key): Removes the given key from the HashMap. If it does not exist or does not match the bucket it's led to, throws an error.
 - length(): Returns the number of stored keys in the HashMap.
 - clear(): Removes all entries in the HashMap.
