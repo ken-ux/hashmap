@@ -1,0 +1,51 @@
+if (index < 0 || index >= buckets.length) {
+  throw new Error("Trying to access index out of bound");
+}
+
+class HashMap {
+  constructor(size) {
+    this.buckets = new Array(size);
+  }
+
+  hash(value) {
+    let hashCode = 0;
+    const primeNumber = 31;
+
+    for (let i = 0; i < value.length; i++) {
+      hashCode = primeNumber * hashCode + value.charCodeAt(i);
+    }
+
+    return hashCode;
+  }
+
+  set(key, value) {
+    // Reduces large hash codes into smaller integers
+    let bucket = this.hash(key) % this.buckets.length;
+    this.buckets[bucket] = value;
+  }
+
+  get(key) {
+    // Reduces large hash codes into smaller integers
+    let bucket = this.hash(key) % this.buckets.length;
+    
+    if (this.buckets[bucket]) {
+      return this.buckets[bucket];
+    } else {
+      return null;
+    }
+  }
+
+  has(key) {}
+
+  remove(key) {}
+
+  length() {}
+
+  clear() {}
+
+  keys() {}
+
+  values() {}
+
+  entries() {}
+}
